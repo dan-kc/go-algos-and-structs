@@ -25,9 +25,9 @@ var _ = Describe("Two eggs search", func() {
 	})
 
 	Context("If the egg breaks on the third floor", func() {
-		It("should return 4", func() {
+		It("should return 3", func() {
 			breakArr = []bool{false, false, false, true, true}
-			Expect(searchs.TwoEggsSearch(breakArr)).To(Equal(4))
+			Expect(searchs.TwoEggsSearch(breakArr)).To(Equal(3))
 		})
 	})
 
@@ -38,7 +38,7 @@ var _ = Describe("Two eggs search", func() {
 		})
 	})
 
-	Context("If the eggs break array is invalid", func() {
+	Context("If the eggs break array isn't sorted", func() {
 		It("should return -1", func() {
 			breakArr = []bool{false, false, true, false, true}
 			Expect(searchs.TwoEggsSearch(breakArr)).To(Equal(-1))

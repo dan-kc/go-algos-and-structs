@@ -1,25 +1,54 @@
 package searchs
 
-import "math"
+import (
+	"math"
+)
 
-func TwoEggsSearch(breakArray []bool) int {
+func TwoEggsSearch(breakArr []bool) int {
+	// break array example = [true, true, true, true, true]
 
-	n := len(breakArray)
-	i := int(math.Sqrt(float64(n)))
-	j := int(math.Sqrt(float64(n)))
+	var (
+		totalFloors int // 5
+		inc         int // 2
+		i           int // 2
+	)
 
-	for {
-		if breakArray[i] {
-			for k := i - j + 1; k <= i; k++ {
-				if breakArray[k] {
-					return k + 1
-				}
-			}
-			break
-		} else {
-			i = i + j
-		}
+	totalFloors = len(breakArr)
+	inc = int(math.Sqrt(float64(totalFloors)))
+	i = inc
+
+	if breakArr[totalFloors-1] == false { // Eggs never break
+		return -1
 	}
 
-	return -1
+	if breakArr[0] == true { // Eggs breaks on ground floor
+		return 0
+	}
+
+	if !isSorted(breakArr) { // Array unsorted
+		return -1
+	}
+
+	for {
+		if breakArr[i] {
+			for j := i - inc + 1; j <= i; j++ {
+				if breakArr[j] {
+					return j
+				}
+			}
+			//
+		} else {
+			i = i + inc
+		}
+	}
+}
+
+func isSorted(arr []bool) bool {
+	n := len(arr)
+	for i := 1; i < n; i++ { // Not sorted when xi false, xi-1 true
+		if !arr[i] && arr[i-1] {
+			return false
+		}
+	}
+	return true
 }
