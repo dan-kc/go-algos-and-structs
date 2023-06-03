@@ -7,15 +7,11 @@ import (
 )
 
 var _ = Describe("Linked list", func() {
-
-	ll := structs.NewLinkedList()
-
-	Context("Given the target is the only element in the array", func() {
-		It("should return -1", func() {
-			arr = []int{2}
-			target = 2
-			Expect(searchs.BinarySearch(arr, target)).To(Equal(0))
+	var ll structs.LinkedList
+	Context("Given the list is empty", func() {
+		It("should have an undefined head", func() {
+			ll = structs.NewLinkedList()
+			Expect(ll.Head).To(Equal(nil))
 		})
 	})
-
 })

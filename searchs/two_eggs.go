@@ -45,7 +45,7 @@ func TwoEggsSearch(breakArr []bool) int {
 
 func isSorted(arr []bool) bool {
 	n := len(arr)
-	for i := 1; i < n; i++ { // Not sorted when xi false, xi-1 true
+	for i := 1; i < n; i++ {
 		if !arr[i] && arr[i-1] {
 			return false
 		}
